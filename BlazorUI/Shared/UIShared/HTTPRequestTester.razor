@@ -1,0 +1,49 @@
+﻿
+<h2>HTTP Request Tester</h2>
+
+<p>
+  The web API is configured for CORS to permit authorization cookies/headers and requests from client code, but the web API as created by the tutorial doesn't actually authorize requests. See the <a href="https://docs.microsoft.com/aspnet/core/security/">ASP.NET Core Security and Identity articles</a> for implementation guidance.
+</p>
+
+<div>URI:</div>
+<input id="request-uri" @bind="uri" size="120" />
+
+
+<p>Method:</p>
+<select id="request-method" @bind="method">
+  <option value="GET">GET</option>
+  <option value="POST" selected>POST</option>
+  <option value="PUT">PUT</option>
+  <option value="DELETE">DELETE</option>
+</select>
+
+<div>
+  <div>Request body:</div>
+<textarea id="request-body" @bind="requestBody"></textarea>
+</div>
+
+<div>Request headers:</div>
+
+@foreach(var header in requestHeaders)
+{
+<div class="header-entry">
+  Name: <input @bind="header.Name" />
+  Value: <input @bind="header.Value" />
+  <button class="btn btn-danger" @onclick="@(e => RemoveHeader(header))">remove</button>
+</div>
+}
+
+<button class="btn btn-primary" id="add-header" @onclick="@AddHeader">Add</button>
+
+<button class="btn btn-success" id="send-request" @onclick="@DoRequest">Request</button>
+
+@if(responseStatusCode.HasValue)
+{
+<h2>Response</h2>
+<div>Status:</div>
+<span id="response-status">@responseStatusCode</span>
+
+<textarea id="response-body" readonly>@responseBody</textarea>
+
+<textarea id="response-headers" readonly>@responseHeaders</textarea>
+}

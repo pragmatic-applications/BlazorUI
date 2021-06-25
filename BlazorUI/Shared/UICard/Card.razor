@@ -1,0 +1,48 @@
+﻿@*
+
+  Orig - Y
+  <CascadingValue Value=this>
+    @ChildContent
+
+    <div class="card bg-light">
+      @if(this.header != null)
+      {
+        @this.header.RenderContent
+      }
+
+      @foreach(var body in this.bodies)
+      {
+        @body.RenderContent
+      }
+
+      @if(this.footer != null)
+      {
+        @this.footer.RenderContent
+      }
+    </div>
+  </CascadingValue>*@
+
+@*====*@
+
+<CascadingValue Value=this>
+  @ChildContent
+
+  <div class="@this.CssRule">
+    @if(this.header != null)
+    {
+      @this.header.RenderContent
+    }
+
+    @foreach(var body in this.bodies)
+    {
+      @body.RenderContent
+    }
+
+    @if(this.footer != null)
+    {
+      @this.footer.RenderContent
+    }
+  </div>
+</CascadingValue>
+
+
