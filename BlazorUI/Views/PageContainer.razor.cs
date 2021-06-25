@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-using BlazorShared;
+using Lite;
 
 using Microsoft.AspNetCore.Components;
 

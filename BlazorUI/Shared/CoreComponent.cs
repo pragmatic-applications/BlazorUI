@@ -1,4 +1,12 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System;
+using System.Threading.Tasks;
+
+using Lite;
+
+using Interfaces;
+
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace BlazorUI.Shared
 {
@@ -21,6 +29,12 @@ namespace BlazorUI.Shared
 
         public string CurrentTitle { get; set; } = string.Empty;
         public string PageToNavigateTo { get; set; } = string.Empty;
+
+        // NN
+        [Parameter] public ISelect SelectParameter { get; set; }
+        [Parameter] public int SpreadParameter { get; set; }
+        [Parameter] public PagerData PagerDataParameter { get; set; }
+        // NN
 
         [Parameter] public string AdminTitleParameter { get; set; }
         [Parameter] public string HomeTitleParameter { get; set; }
@@ -62,5 +76,116 @@ namespace BlazorUI.Shared
 
             this.CurrentTitle = string.IsNullOrWhiteSpace(this.TitleParameter) ? "Blazor & MVC" : this.TitleParameter;
         }
+
+        // S NN
+        [Parameter] public bool IsPageIndexParameter { get; set; } = false;
+        [Parameter] public bool IsCrudParameter { get; set; } = false;
+        [Parameter] public bool IsPageAdminParameter { get; set; } = false;
+
+        public string UrlUpdate { get; set; }
+        public string UrlDelete { get; set; }
+
+        protected int ImageCount { get; set; } = 0;
+
+        public ISelect ItemSelect { get; set; }
+
+        protected virtual void ClearFields() { }
+
+
+        protected virtual void Reload()
+        {
+            this.ClearFields();
+            this.NavigationManager.NavigateTo("/");
+        }
+
+        protected void GoToPage(string pageToNavigateTo)
+        {
+            this.ClearFields();
+            this.StateHasChanged();
+            this.NavigationManager.NavigateTo(pageToNavigateTo);
+        }
+
+        [Inject] public ImageUploaderService ImageUploaderService { get; set; }
+        public string ImageFimeName { get; set; }
+        protected string FileNameStart => Guid.NewGuid().ToString() + "_";
+
+        [Inject] public EntityParameter EntityParameter { get; set; }
+        [Inject] public PagerData PagerData { get; set; }
+
+        protected virtual Task GetAsync() => Task.FromResult(default(object));
+        protected virtual Task GetAsync(int id) => Task.FromResult(default(object));
+        protected virtual Task InsertAsync() => Task.FromResult(default(object));
+        protected virtual Task UpdateAsync() => Task.FromResult(default(object));
+        protected virtual Task DeleteAsync() => Task.FromResult(default(object));
+        protected virtual Task GetEntityCategoryAsync() => Task.FromResult(default(object));
+
+        [Parameter] public EventCallback<string> OnSearchChanged { get; set; }
+        protected async Task SearchChanged(string searchTerm)
+        {
+            this.EntityParameter.PageNumber = 1;
+            this.EntityParameter.SearchTerm = searchTerm;
+            await this.GetAsync();
+        }
+
+        [Parameter] public EventCallback<string> OnSortChanged { get; set; }
+        protected async Task SortChanged(string orderBy)
+        {
+            if(this.IsDebugConsole)
+            {
+                Console.WriteLine(orderBy);
+            }
+
+            this.EntityParameter.OrderBy = orderBy;
+            await this.GetAsync();
+        }
+
+        [Parameter] public EventCallback<int> OnSelectedPage { get; set; }
+        protected async Task SelectedPage(int page)
+        {
+            this.EntityParameter.PageNumber = page;
+
+            await this.GetAsync();
+        }
+
+        //???
+        protected async Task OnChange(InputFileChangeEventArgs e)
+        {
+            var files = e.GetMultipleFiles();
+
+            foreach(var file in files)
+            {
+                var resizedFile = await file.RequestImageFileAsync(file.ContentType, 640, 480);
+                var buf = new byte[resizedFile.Size];
+
+                using var stream = resizedFile.OpenReadStream();
+                await stream.ReadAsync(buf);
+
+                this.ImageFimeName = file.Name;
+                this.ImageUploaderService.ImageFiles.Add(new ImageFile { Base64Data = Convert.ToBase64String(buf), ContentType = file.ContentType, FileName = file.Name });
+            }
+
+            this.ImageUploaderService.Message = $"Click UPLOAD to continue uploading {this.ImageFimeName}";
+            this.ImageUploaderService.IsDisabled = false;
+        }
+        //???
+
+        protected async Task<string> UploadFilesAsync()
+        {
+            var fileNameStart = this.FileNameStart;
+            await this.ImageUploaderService.UploadAsync(fileNameStart: fileNameStart);
+
+            return fileNameStart;
+        }
+
+        protected virtual Task UploadAsync() => Task.FromResult(default(object));
+
+        // Generic Class members
+        public bool IsLoading { get; set; }
+        public bool IsError { get; set; }
+
+        protected virtual void LoadDataFail(Exception exception) { }
+        protected virtual void LoadDataCategoryFail(Exception exception) { }
+        // Generic Class members
+        // E NN
     }
 }
