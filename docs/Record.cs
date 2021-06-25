@@ -8,6 +8,4 @@
 // Stop: 18:00
 //=================================================================
 
-// BlazorUI Version="0.0.0.2"
-
-
+// Refactor: Lite => Lib_BrowserPlatform

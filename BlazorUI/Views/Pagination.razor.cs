@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using Lite;
+using Lib_BrowserPlatform;
 
 using Microsoft.AspNetCore.Components;
 

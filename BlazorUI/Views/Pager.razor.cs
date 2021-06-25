@@ -1,4 +1,4 @@
-﻿using Lite;
+﻿using Lib_BrowserPlatform;
 
 using BlazorUI.Shared;
 
@@ -6,7 +6,7 @@ using Interfaces;
 
 namespace BlazorUI.Views
 {
-    public partial class Pager : CoreComponent //AppComponent
+    public partial class Pager : CoreComponent
     {
         public PagerData PagerDataValue { get; set; }
         public ISelect SelectParameterValue { get; set; }
