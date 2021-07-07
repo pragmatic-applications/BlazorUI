@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
-namespace BlazorUI.Shared
+
+namespace BlazorUI
 {
     public static class Utilities
     {

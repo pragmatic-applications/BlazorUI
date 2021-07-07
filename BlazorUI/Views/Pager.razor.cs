@@ -1,8 +1,6 @@
-﻿using Lib_BrowserPlatform;
+﻿using Interfaces;
 
-using BlazorUI.Shared;
-
-using Interfaces;
+using Lib_BrowserPlatform;
 
 namespace BlazorUI.Views
 {

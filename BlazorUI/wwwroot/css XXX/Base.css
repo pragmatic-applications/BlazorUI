@@ -271,10 +271,10 @@ h1, h2, h3, h4, h5, h6
     max-width: 1800px;
 }
 
-.DataGridContainer.DataGridItem
+/*.DataGridContainer.DataGridItem
 {
     background-image: linear-gradient(to bottom, #e05518, #DEE8FB);
-}
+}*/
 
 .GridImage
 {

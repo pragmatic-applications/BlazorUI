@@ -2,24 +2,8 @@
 
 @if(this.Entities != null)
 {
-    <div class="container_grid_xs container_grid_sm_2 container_grid_md_2 container_grid_lg_4">
-        @foreach(var item in this.Entities)
-        {
-            @this.Entity(item)
-        }
-    </div>
-}
-
-@*
-    Orig
-    @if(this.Entities != null)
+    @foreach(var item in this.Entities)
     {
-        <div class="row no-gutters">
-            @foreach(var item in this.Entities)
-            {
-                <div class="col-sm-12 col-md-6 col-lg-3">
-                    @this.Entity(item)
-                </div>
-            }
-        </div>
-    }*@
+        @this.Entity(item)
+    }
+}

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazorUI.Views
 {
-    public partial class RenderModeSwitch
+    public partial class RenderModeSwitch : ComponentBase
     {
         [Inject] public NavigationManager NavigationManager { get; set; }
 

@@ -1,4 +1,4 @@
-﻿namespace BlazorUI.Shared.UIShared
+﻿namespace BlazorUI
 {
   public class ThemeInfo
   {

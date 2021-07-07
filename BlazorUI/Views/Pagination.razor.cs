@@ -21,7 +21,7 @@ namespace BlazorUI.Views
         {
             this.links = new List<PagingLink>();
 
-            this.links.Add(new PagingLink(this.PagerData.CurrentPage - 1, this.PagerData.HasPrevious, "Previous", this.PagerData.IsCursorPointer));
+            this.links.Add(new PagingLink(this.PagerData.CurrentPage - 1, this.PagerData.HasPrevious, "<<", this.PagerData.IsCursorPointer));
 
             for(var i = 1; i <= this.PagerData.TotalPages; i++)
             {
@@ -31,7 +31,7 @@ namespace BlazorUI.Views
                 }
             }
 
-            this.links.Add(new PagingLink(this.PagerData.CurrentPage + 1, this.PagerData.HasNext, "Next", true));
+            this.links.Add(new PagingLink(this.PagerData.CurrentPage + 1, this.PagerData.HasNext, ">>", true));
         }
 
         private async Task SelectPageHandler(PagingLink link)

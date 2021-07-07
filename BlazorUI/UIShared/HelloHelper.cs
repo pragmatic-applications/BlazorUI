@@ -1,6 +1,6 @@
 ﻿using Microsoft.JSInterop;
 
-namespace BlazorUI.Shared.UIShared
+namespace BlazorUI
 {
   public class HelloHelper
   {

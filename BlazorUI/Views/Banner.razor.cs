@@ -1,8 +1,6 @@
-﻿using BlazorUI.Shared;
-
-namespace BlazorUI.Views
+﻿namespace BlazorUI.Views
 {
-    public partial class Banner : CoreComponent //:  //AppCoreComponent //ComponentBase
+    public partial class Banner : CoreComponent
     {
         protected override void OnParametersSet()
         {

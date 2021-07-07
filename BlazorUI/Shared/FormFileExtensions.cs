@@ -4,25 +4,26 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Http;
 
-namespace BlazorUI.Shared
+namespace BlazorUI
 {
-  public static class FormFileExtensions
-  {
-    public static string GetFilename(this IFormFile file) =>
-    ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.ToString().Trim('"');
-
-    public static async Task<MemoryStream> GetFileStream(this IFormFile file)
+    public static class FormFileExtensions
     {
-      var filestream = new MemoryStream();
-      await file.CopyToAsync(filestream);
-      return filestream;
-    }
+        public static string GetFilename(this IFormFile file) => ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.ToString().Trim('"');
 
-    public static async Task<byte[]> GetFileArray(this IFormFile file)
-    {
-      var filestream = new MemoryStream();
-      await file.CopyToAsync(filestream);
-      return filestream.ToArray();
+        public static async Task<MemoryStream> GetFileStream(this IFormFile file)
+        {
+            var filestream = new MemoryStream();
+            await file.CopyToAsync(filestream);
+
+            return filestream;
+        }
+
+        public static async Task<byte[]> GetFileArray(this IFormFile file)
+        {
+            var filestream = new MemoryStream();
+            await file.CopyToAsync(filestream);
+
+            return filestream.ToArray();
+        }
     }
-  }
 }

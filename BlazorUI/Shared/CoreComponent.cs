@@ -8,7 +8,7 @@ using Lib_BrowserPlatform;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
-namespace BlazorUI.Shared
+namespace BlazorUI
 {
     public class CoreComponent : ComponentBase
     {
@@ -20,6 +20,9 @@ namespace BlazorUI.Shared
         public FormMode FormMode { get; set; } = FormMode.Create;
         public string FormTitle { get; set; }
 
+        public static string CategoryName { get; set; } // CoreComponent.CategoryName
+        public static int CategoryId { get; set; } // CoreComponent.CategoryId
+
         [Parameter] public RenderFragment ChildContent { get; set; }
 
         [Parameter] public int IdParameter { get; set; } = 0;
@@ -30,11 +33,9 @@ namespace BlazorUI.Shared
         public string CurrentTitle { get; set; } = string.Empty;
         public string PageToNavigateTo { get; set; } = string.Empty;
 
-        // NN
         [Parameter] public ISelect SelectParameter { get; set; }
         [Parameter] public int SpreadParameter { get; set; }
         [Parameter] public PagerData PagerDataParameter { get; set; }
-        // NN
 
         [Parameter] public string AdminTitleParameter { get; set; }
         [Parameter] public string HomeTitleParameter { get; set; }
@@ -77,7 +78,6 @@ namespace BlazorUI.Shared
             this.CurrentTitle = string.IsNullOrWhiteSpace(this.TitleParameter) ? "Blazor & MVC" : this.TitleParameter;
         }
 
-        // S NN
         [Parameter] public bool IsPageIndexParameter { get; set; } = false;
         [Parameter] public bool IsCrudParameter { get; set; } = false;
         [Parameter] public bool IsPageAdminParameter { get; set; } = false;
@@ -127,14 +127,10 @@ namespace BlazorUI.Shared
             await this.GetAsync();
         }
 
+        
         [Parameter] public EventCallback<string> OnSortChanged { get; set; }
         protected async Task SortChanged(string orderBy)
         {
-            if(this.IsDebugConsole)
-            {
-                Console.WriteLine(orderBy);
-            }
-
             this.EntityParameter.OrderBy = orderBy;
             await this.GetAsync();
         }
@@ -147,7 +143,6 @@ namespace BlazorUI.Shared
             await this.GetAsync();
         }
 
-        //???
         protected async Task OnChange(InputFileChangeEventArgs e)
         {
             var files = e.GetMultipleFiles();
@@ -164,10 +159,9 @@ namespace BlazorUI.Shared
                 this.ImageUploaderService.ImageFiles.Add(new ImageFile { Base64Data = Convert.ToBase64String(buf), ContentType = file.ContentType, FileName = file.Name });
             }
 
-            this.ImageUploaderService.Message = $"Click UPLOAD to continue uploading {this.ImageFimeName}";
+            this.ImageUploaderService.Message = $"Click the Upload button to upload {this.ImageFimeName}";
             this.ImageUploaderService.IsDisabled = false;
         }
-        //???
 
         protected async Task<string> UploadFilesAsync()
         {

@@ -3,16 +3,6 @@
 {
   "use strict";
 
-  //function collapse()
-  //{
-  //  this.isExpanded = false;
-  //}
-
-  //function toggle()
-  //{
-  //  this.isExpanded = !this.isExpanded;
-  //}
-
   function ngOnInit()
   {
     onHandleNavigationToggleEvents(document.getElementById("ToggleSidebar"));

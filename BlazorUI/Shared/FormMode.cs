@@ -1,4 +1,4 @@
-﻿namespace BlazorUI.Shared
+﻿namespace BlazorUI
 {
     public enum FormMode
     {

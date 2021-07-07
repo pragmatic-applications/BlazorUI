@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace BlazorUI.Shared
+namespace BlazorUI
 {
     public class HomeBase : UIEntityBase
     {

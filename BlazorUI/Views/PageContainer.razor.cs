@@ -11,19 +11,8 @@ namespace BlazorUI.Views
         [Parameter] public RenderFragment ChildContent { get; set; }
         [Parameter] public List<PageLink> NavLinks { get; set; }
 
-
-        //[Inject] public IJSRuntime JSRuntime { get; set; }
-
-        //[Inject] public NavigationJSI NavigationJSI { get; set; }
-
-        //protected override async Task OnAfterRenderAsync(bool firstRender)
-        //{
-        //    await base.OnAfterRenderAsync(firstRender);
-
-        //    if(firstRender)
-        //    {
-        //        await this.NavigationJSI.LoadNavigation();
-        //    }
-        //}
+        [Inject] public NavigationJSI NavigationJSI { get; set; }
+        [Parameter] public BrowserDimension BrowserDimensionParameter { get; set; }
+        [Parameter] public bool IsJavaScriptReadyParameter { get; set; }
     }
 }

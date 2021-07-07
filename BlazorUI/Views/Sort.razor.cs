@@ -1,7 +1,5 @@
 ﻿using System.Threading.Tasks;
 
-using BlazorUI.Shared;
-
 using Interfaces;
 
 using Microsoft.AspNetCore.Components;

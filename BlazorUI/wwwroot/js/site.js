@@ -26,8 +26,7 @@ function readURL(input) {
   }
 }
 
-//// VK
-
+//// VK S
 
 function confirmDelete(uniqueId, isDeleteClicked) {
 
@@ -46,29 +45,12 @@ function confirmDelete(uniqueId, isDeleteClicked) {
   }
 }
 
-
-//// VK
-
-//==========
-//MainContent
-//CKEDITOR.replace( 'MainContent' );
-
-
-//function CKEditor(MainContent) {
-
-//  CKEDITOR.replace(MainContent);
-//}
+//// VK E
 
 function CKEditor() {
 
   CKEDITOR.replace('MainContent');
 }
-
-//window.CKEditor() = function () {
-
-//  CKEDITOR.replace('MainContent');
-//}
-
 
 window.CKEDITOR =
 {
@@ -76,63 +58,8 @@ window.CKEDITOR =
     CKEDITOR.replace("Content");
   },
 
-  //document.getElementById(id)
   ckEditor1: function (id) {
     CKEDITOR.replace(document.getElementById(id));
   }
 
 };
-
-////=============
-//(function () {
-
-//  window.CKEDITORFunctions = {
-
-//    createQuill: function (quillElement) {
-//      CKEDITOR.replace('MainContent');
-
-//      //new Quill(quillElement, options);
-
-//    }
-
-//  };
-
-//})();
-
-////=========
-//(function () {
-
-//  window.QuillFunctions = {
-
-//    createQuill: function (quillElement) {
-
-//      var options = {
-
-//        debug: 'info',
-
-//        modules: {
-
-//          toolbar: '#toolbar'
-
-//        },
-
-//        placeholder: 'Compose an epic...',
-
-//        readOnly: false,
-
-//        theme: 'snow'
-
-//      };
-
-//      // set quill at the object we can call
-
-//      // methods on later
-
-//      new Quill(quillElement, options);
-
-//    }
-
-//  };
-
-//})();
-
