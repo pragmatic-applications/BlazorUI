@@ -3,9 +3,10 @@
 //=================================================================
 // Programmer: Maurice Antonio Kelly
 // Description: .NET Portfolio
-// ASP.NET Core 5.0
-// Date: 2021-07-07
-// Stop: 15:00
+
+// Date: 2025-01-22
+// Stop: 10:00
+// Git Message: Update from 5 to 9
 //=================================================================
 
 // A .NET 5.0 Blazor Razor Class Library (BRCL) that include Navigation menu, PageContainer, Pagination, Sort, Search, Banner, Footer and other helpful components and classes.
